@@ -6,16 +6,21 @@
 class FBullCowGame 
 {
 public:
+	FBullCowGame(); // constructor
+
+	int GetMaxTries() const;
+	int GetCurrentTry() const;
+	bool IsGameWon() const;
+
 	void Reset(); // TODO make a more rich return value
-	int GetMaxTries();
-	int GetCurrentTry();
-	bool IsGameWon();
 	bool CheckGuessValidity(std::string);
-	int NumberOfGamesWon();
+
+	// provide method for counting bulls and cows, incrementing turn
 
 
 // please try and ignore this and focus on the interface above :)
 private:
-	int MyCurrentTry = 1;
-	int MyMaxTries = 5;
+	// see constructor for initilization
+	int MyCurrentTry;
+	int MyMaxTries;
 };
