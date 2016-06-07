@@ -10,6 +10,11 @@ int FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 // will not change anything at run time
 int FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
+int32 FBullCowGame::GetHiddenWordLength() const
+{
+	return MyHiddenWord.length();
+}
+
 void FBullCowGame::Reset()
 {
 	constexpr int MAX_TRIES = 8;
@@ -27,7 +32,7 @@ bool FBullCowGame::IsGameWon() const
 	return false;
 }
 
-bool FBullCowGame::CheckGuessValidity(FString)
+bool FBullCowGame::CheckGuessValidity(FString) const
 {
 	return false;
 }
