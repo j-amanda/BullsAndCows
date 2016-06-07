@@ -43,23 +43,11 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 
 	int32 HiddenWordLength = MyHiddenWord.length();
 
-	//for (int32 i = 0; i < HiddenWordLength; i++) {
-	//	if (Guess[i] == MyHiddenWord[i]) {
-	//		BullCowCount.Bulls++;
-	//	}
-	//	else {
-	//		for (int32 j = 0; j < HiddenWordLength; j++) {
-	//			if (Guess[i] == MyHiddenWord[j]) {
-	//				BullCowCount.Cows++;
-	//			}
-	//		}
-	//	}
-	//} // previous implementation
-
+	// compare guess to isogram:
 	for (int32 i = 0; i < HiddenWordLength; i++) {
 		for (int32 j = 0; j < HiddenWordLength; j++) {
-			if (Guess[j] == MyHiddenWord[i]) {
-				if (j == i) {
+			if (Guess[j] == MyHiddenWord[i]) { // runs only if letters match position i and j
+				if (j == i) { // only if letters match in same position we'll add a bull
 					BullCowCount.Bulls++;
 				}
 				else {
