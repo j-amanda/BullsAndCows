@@ -1,18 +1,41 @@
 #include "FBullCowGame.h"
 
-FBullCowGame::FBullCowGame()
+FBullCowGame::FBullCowGame() // constructor
 {
 	Reset();
 }
 
-int FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 // const function disallows function from changing properties of object (such as variables)
 // will not change anything at run time
-int FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
-int32 FBullCowGame::GetHiddenWordLength() const
+int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
+int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
+
+
+bool FBullCowGame::IsGameWon() const
 {
-	return MyHiddenWord.length();
+	return false;
+}
+
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const // TODO replace false with methods
+{
+	if (false) // not an isogram
+	{
+		return EGuessStatus::Not_Isogram;
+	} 
+	else if (false) // not all lowercase
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (Guess.length() != GetHiddenWordLength()) // wrong length
+	{ 
+		return EGuessStatus::Wrong_Length;
+	}
+	else 
+	{
+		return EGuessStatus::OK;
+	}
 }
 
 void FBullCowGame::Reset()
@@ -25,16 +48,6 @@ void FBullCowGame::Reset()
 
 	MyCurrentTry = 1;
 	return;
-}
-
-bool FBullCowGame::IsGameWon() const
-{
-	return false;
-}
-
-bool FBullCowGame::CheckGuessValidity(FString) const
-{
-	return false;
 }
 
 // receives a valid guess, increments turn, and returns count
