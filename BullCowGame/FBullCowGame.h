@@ -12,6 +12,7 @@ struct FBullCowCount
 
 enum class EGuessStatus // enum class creates local scope
 {
+	Invalid_Status,
 	OK,
 	Not_Isogram,
 	Not_Letters,
