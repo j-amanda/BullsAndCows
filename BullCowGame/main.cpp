@@ -13,6 +13,7 @@ using FText = std::string;
 using int32 = int;
 
 void PrintIntro();
+void PrintGameSummary();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
@@ -35,7 +36,7 @@ int main()
 void PrintIntro()
 {
 	int32 WordLength = BCGame.GetHiddenWordLength();
-	std::cout << "\n\nWelcome to Bulls & Cows, a fun word game." << std::endl;
+	std::cout << "Welcome to Bulls & Cows, a fun word game." << std::endl;
 	std::cout << "Can you guess the " << WordLength;
 	std::cout << " letter isogram I'm thinking of?" << std::endl;
 	std::cout << std::endl;
@@ -62,10 +63,12 @@ void PlayGame()
 
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ", Cows = " << BullCowCount.Cows << "\n\n";
+
+		PrintGameSummary();
 	}
+
 	return;
 
-	// TODO summarize game
 }
 
 // loop continually until user gives a valid guess
@@ -114,3 +117,15 @@ bool AskToPlayAgain()
 	return(Response[0] == 'Y' || Response[0] == 'y');
 }
 
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon()) 
+	{
+		std::cout << "Congratulations! You won the game!" << std::endl;
+	}
+	else if (BCGame.GetCurrentTry() > BCGame.GetMaxTries()){
+		std::cout << "Sorry! Better luck next time!" << std::endl;
+	}
+
+	return;
+}
