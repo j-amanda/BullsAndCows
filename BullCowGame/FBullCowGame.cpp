@@ -1,4 +1,6 @@
 #include "FBullCowGame.h"
+#include <map>
+# define TMap std::map
 
 FBullCowGame::FBullCowGame() // constructor
 {
@@ -15,7 +17,7 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const // TODO replace false with methods
 {
-	if (false) // not an isogram
+	if (!IsIsogram(Guess)) // not an isogram
 	{
 		return EGuessStatus::Not_Isogram;
 	}
@@ -77,3 +79,23 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	return BullCowCount;
 }
 
+bool FBullCowGame::IsIsogram(FString Word) const 
+{ 
+	// treat 0 and 1 letter words as isogram
+	if (Word.length() <= 1) { return true; }
+
+	TMap<char, bool> LetterSeen;
+	for (auto Letter : Word) {
+		Letter = tolower(Letter); // handle mixed case words
+
+		// if the letter doesn't exist in the map then add it, 
+		// otherwise return false because we have a duplicate letter
+		if (!LetterSeen[Letter]) {
+			LetterSeen[Letter] = true;
+		}
+		else {
+			return false;
+		}
+	}
+	return true; 
+}
