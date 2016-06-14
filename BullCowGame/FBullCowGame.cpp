@@ -42,7 +42,14 @@ void FBullCowGame::Reset()
 	MyMaxTries = MAX_TRIES;
 
 	const FString HIDDEN_WORD = "planet";
-	MyHiddenWord = HIDDEN_WORD;
+	FString RandomWords[] = { 
+		"abrupt", "bandit", "crafty", "dispel", "employ", "flaunt", "gasket", 
+		"hybrid", "income", "jigsaw", "kosher", "lather", "mirage", "native", 
+		"orange", "planet", "quoted", "random", "savior", "tavern", "umpire",
+		"vector", "wealth", "yogurt", "zombie"
+	};
+	FString RandomWord = RandomWords[rand() % 25];
+	MyHiddenWord = RandomWord;
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
@@ -75,10 +82,12 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 		}
 	}
 
-	if (BullCowCount.Bulls == WordLength) {
+	if (BullCowCount.Bulls == WordLength) 
+	{
 		bGameIsWon = true;
 	}
-	else {
+	else 
+	{
 		bGameIsWon = false;
 	}
 
